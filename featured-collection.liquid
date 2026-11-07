@@ -1,0 +1,6 @@
+{% assign featured_collection = collections[section.settings.collection] %}
+<section class="products-section"><div class="section-heading"><p class="eyebrow">CURATED WITH CARE</p><h2>Explore our collection</h2><p>Wholesome favourites, selected for quality and goodness.</p></div>
+{% if featured_collection != blank and featured_collection.products_count > 0 %}
+<div class="product-grid">{% for product in featured_collection.products limit: 4 %}<a class="product-card" href="{{ product.url }}">{% if product.featured_image %}{{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', alt: product.title }}{% else %}<div class="image-placeholder">MA ANFA</div>{% endif %}<h3>{{ product.title }}</h3><p>{{ product.price | money }}</p></a>{% endfor %}</div>
+{% else %}<div class="empty-state">Add products and select a collection in the Shopify theme editor to display them here.</div>{% endif %}</section>
+{% schema %}{"name":"Featured collection","settings":[{"type":"collection","id":"collection","label":"Collection"}]}{% endschema %}
